@@ -26,9 +26,10 @@
 
 # package.json 설정파일
 ### 의존성 관리파일 : 의존성(모듈)의 정보를 가지고 있다.
-### `install --save 모듈명`<br> --save 옵션을 추가하면 package.json파일에 등록됨 (로컬패키지설치)
+### `install --save 모듈명` `install --save-dev 모듈명`<br> --save or --save-dev 옵션을 추가하면 package.json파일에 등록됨 (로컬패키지설치)
 ### `install -g 모듈명` -g 옵션을 추가하면 전역설치됨(개발컴퓨터에 설치되는 것.)
-### 이후 프로젝트마다 모듈을 쓰고 싶을 땐, `npm install --sava-dev 모듈명` 을 실행
+### 이후 프로젝트마다 모듈을 쓰고 싶을 땐,<br>
+`npm install --sava-dev 모듈명` or `npm install --sava 모듈명` 을 실행
 
 
 
