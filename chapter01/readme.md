@@ -1,3 +1,12 @@
+Question
+1. p.63 전역으로 gulp를 설치하고 프로젝트마다 로컬gulp를 중복해서 설치하는 이유는 뭘까?
+
+Caution
+1. 업데이트 되면서 부터 .babelrc 파일은 안쓴다. 삭제할것.
+2. env 라는 preset을 사용한다. 코드는 https://blog.naver.com/PostList.nhn?blogId=bluesky4381&from=postList&categoryNo=29 참고
+
+
+
 자바스크립트의 역사
 ==================
 
@@ -41,7 +50,8 @@
 ### 걸프가 더 많이 쓰임
 
 # 서버side (노드) vs 클아이언트side (브라우저)
-<span style="color:red">노드는 서버쪽</span>
+
+
 ## 서버       : /es6/ (노드소스 경로)
 ## 클아이언트 : /public/es6/  (ES6용 .js) 
 ##              /public/dist/ (ES5용 .js) dist는 distribution의 약자
