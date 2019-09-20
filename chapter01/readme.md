@@ -40,7 +40,8 @@
 ## 반복잡업의 번거로움을 자동화하는 빌드 도구
 ### 걸프가 더 많이 쓰임
 
-# 서버side (노드) vs 클아이언트side (브라우저) <span style="color:red">노드는 서버쪽</span>
+# 서버side (노드) vs 클아이언트side (브라우저)
+<span style="color:red">노드는 서버쪽</span>
 ## 서버       : /es6/ (노드소스 경로)
 ## 클아이언트 : /public/es6/  (ES6용 .js) 
 ##              /public/dist/ (ES5용 .js) dist는 distribution의 약자
