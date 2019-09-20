@@ -43,7 +43,7 @@
 # 서버side (노드) vs 클아이언트side (브라우저)
 ## 서버       : /es6/ (노드소스 경로)
 ## 클아이언트 : /public/es6/  (ES6용 .js)<br>
-## <&nbsp>             /public/dist/ (ES5용 .js)
+## &nbsp       /public/dist/ (ES5용 .js)
 
 
 # 트랜스컴파일러
