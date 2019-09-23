@@ -1,3 +1,6 @@
+p.93 상단 NOTE ` ( console.log(obj) ).obj[SIZE] ` 잘된거 아닌데;;
+
+
 객체
 =
 ~~~
