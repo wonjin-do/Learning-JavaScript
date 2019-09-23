@@ -24,11 +24,46 @@ p.93 상단 NOTE ` ( console.log(obj) ).obj[SIZE] ` 잘된거 아닌데;;
 <br>
 ### 1. Symbol 
 #### a) obj[Symbol]  [ ] 안에 큰 따옴표없음.
+결과 `{BLUE: "blue"}`
 #### b) obj.Symbol
+#####  콘솔에서 obj를 출력할 때, [ ] 등록후 접근시 key 의 리터럴이 조회되지 않음. 대신, symbol의 파라미터가 보여짐.
+결과 `{Symbol(hi): "red"}`<br>
 ### 2. 유효식별자_문자열
 #### a) obj["string"] 안에 큰따옴표 있어야함.
 #### b) obj.string
 ### 3. 비유효식별자_공백포함문자열
 #### a) obj["space_string"] 안에 큰따옴표 있어야함.
 #### b) 불가능
+
+
+
+~~~
+const s = "hello";
+s.rating = 3;
+s.rating //undefined
+~~~
+이유 : s.rating = 3 코드 직후 임시로 만들어진 String 객체가 raing 프로퍼티를 할당하고 바로 소멸됨.
+
+숫자로 바꾸기
+=
+## way1
+~~~
+const numStr = "33.3";
+const num = Number(numStr); 
+~~~
+Number객체의 생성자를 빌려다 쓰고 바로 '원시값'을 반환함.
+
+## way2
+~~~
+const a = parseInt("16 volts", 10);
+
+const b = parseInt("3a", 16);
+
+const c = parseFloat("15.5 kph");
+~~~
+3경우 모두 결과물이 10진수임.<br>
+두번째 파라미터값은 첫번째 파라미터의 진수를 나타냄.<br>
+따라서, 3a 는 16진수이고 b 에는 58이 저장됨.
+####parseFloat는 항상 파라미터가 10진수임.
+
 
