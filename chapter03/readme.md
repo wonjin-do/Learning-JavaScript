@@ -20,27 +20,35 @@ p.93 상단 NOTE ` ( console.log(obj) ).obj[SIZE] ` 잘된거 아닌데;;
 그러나 1.심볼 일 경우, key 값을 불러올 때 값을 등록했을 때의 방법과 일치시켜서 불러와야 한다.<br>
 위의 코드처럼 `obj[RED] = "red"`로 등록을 했다면 console.log 메소드 안에 `obj[RED]`로 불러와야 한다. `obj.RED`는 오류임.
 <br>
+
+(정리)<br>
+멤버접근 연산자(.) : key값이 유효식별자, 심볼일 경우<br>
+대괄호 [] : key값이 유효식별자("abc"), 비유효식별자("abc ABC"), 심볼(RED)일 때 사용
+
 ### 1. Symbol (유일한 토큰을 나타내기 위한 ES6의 새 데이트 타입) - 항상 유일하다. 다른 어떤 심볼과 같지 않다.
-#### a) obj[Symbol]  [ ] 안에 큰 따옴표없음.
-결과 `{BLUE: "blue"}`
-#### b) obj.Symbol
-#####  콘솔에서 obj를 출력할 때, [ ] 등록후 접근시 key 의 리터럴이 조회되지 않음. 대신, symbol의 파라미터가 보여짐.
-결과 `{Symbol(hi): "red"}`<br>
-### 2. 유효식별자_문자열
-#### a) obj["string"] 안에 큰따옴표 있어야함.
-#### b) obj.string
-### 3. 비유효식별자_공백포함문자열
-#### a) obj["space_string"] 안에 큰따옴표 있어야함.
-#### b) 불가능
+~~~
+    const obj={};
+    const RED = Symbol("hi");
+    const BLUE = Symbol("me too");
 
-
+    obj[RED] = "red"; // [ ]로 프로퍼티 등록
+    obj.BLUE = "blue";// 멤버접근연산자로 프로퍼티 등록
+    console.log(obj); // {BLUE: "blue", Symbol(hi): "red"}
+    console.log(obj.RED);//undefined
+    console.log(obj[RED]);//red
+    console.log(obj[BLUE]);//undefined
+    console.log(obj.BLUE);//blue
+~~~
+심볼의 경우 등록했던 방식과 동일하게 접근해서 사용해야함.
+[ ]면 [ ]로 접근 / .이면 .으로 접근
 
 ~~~
+p.95
 const s = "hello";
 s.rating = 3;
 s.rating //undefined
 ~~~
-이유 : s.rating = 3 코드 직후 임시로 만들어진 String 객체가 raing 프로퍼티를 할당하고 바로 소멸됨.
+이유 : s.rating = 3 코드 직후 임시로 만들어진 String 객체가 rating 프로퍼티를 할당하고 바로 소멸됨.
 
 숫자로 바꾸기
 =
