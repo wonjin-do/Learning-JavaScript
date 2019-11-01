@@ -1,10 +1,12 @@
 해체할당
 =
+
+# 객체 Obj의 경우
 ~~~
 const obj = {b: 2, c: 3, d: 4};
 
 const {a,b,c} = obj;//선언 및 해체할당
-a; undefined
+a; undefined // obj에 a 없음
 b; 2
 c; 3
 
@@ -18,6 +20,24 @@ let a,b,c;
 ( {a,b,c} = obj ) ;
 ~~~
 괄호로 꼭 감싸줘야함.
+
+# 배열 arr인 경우
+~~~
+const arr = [1,2,3];
+let [x,y] = arr;
+x; //1
+y; //2
+~~~
+
+확산연산자(...)를 이용해 남은 요소를 새 배열 rest에 할당가능
+~~~
+const arr = [1,2,3,4,5];
+let [x,y, ...rest] = arr;
+x;    //1
+y;    //2
+rest; //[3,4,5]
+~~~
+
 
 ### 배열의 위치바꿀 때( tmp변수 필요없음)
 
