@@ -291,6 +291,54 @@ updateBruce.call(madeline, 1274,"king");//소용없음.
 const updateBruce1949 = update.bind(bruce, 1949);//bruce의 birthYear프로퍼티는 항상 1949로 디폴트설정됨.
 updateBruce1949("singerSongWriter");
     
+//[화살표함수에 없는 것들]
+$(document).ready(function(){
+    'use strict';
+    const btn = document.getElementById(`btn`);
+    var myObj = {
+        count: 0,
+        setCounter: function(){
+            btn.addEventListener(`click`,function(){
+                console.log(this);//btn
+            });
+            btn.addEventListener(`focus`,function(){
+                console.log(this);//btn
+            }.bind(this));
+        }
+    };
+    myObj.setCounter();
+});
+
+//this가 없다.
+const myFun = ()=>{
+    //this가 존재하지 않음. 따라서 생성자 함수로서 기능을 못함
+    //prototype도 생성되지 않는다.
+};
+
+//arguments가 없다.
+const myFun = function(){
+    console.log(arguments);
+}
+myFun(1,2,3,4);//[1,2,3,4,callee:f,Symbol.iterator:f]가 있음.
+
+const myFun2 = () => {
+    console.log(arguments);
+}
+myFun2(1,2,3,4);//arguments is not defined.
+
+// => 함수에 없는 변수인 경우 스코프체인에 따라 상위 스코프를 탐색한다.
+function outter(){
+    const myFun2 = () => {
+        console.log(arguments);
+    }
+    myFun2();
+}
+outter(1,2,3,4)//[1,2,3,4,callee:f,Symbol.iterator:f]가 있음.
+
+const myFun3 = (...args) => {
+    console.log(args);
+}
+myFun3(1,2,3,4);//arguments is not defined.
 
 $(document).ready(function(){
     'use strict';
