@@ -27,3 +27,5 @@ setTimeout(() => {
 console.log(1);
 
 //setTimeout은 브라우저가 제공하는 webAPI
+
+

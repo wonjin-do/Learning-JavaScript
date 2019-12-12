@@ -1,4 +1,3 @@
-~~~
 p.211 상단 팁 구현해보기
 p.219 원한다면 인덱스에서 1을 뺀값을~~
 
@@ -31,7 +30,11 @@ p.219 원한다면 인덱스에서 1을 뺀값을~~
     arr.sort( (a,b) => a.name > b.name  ); //a 가 b 보다 뒤에 있으면 정렬해라
     
     //reduce
+        //배열을 값/배열/객채하나로 변환하기 위해 사용함.
     const arr = [5, 7, 2, 4];
+
+    //첫 파라미터: accumulator
+    //이후 파라미터: element, idx, this임.
     const sum = arr.reduce((accu, el) => accu + el);
 
     const words = ["BeachBall", "Rodeo", "Angel",
@@ -103,4 +106,11 @@ p.219 원한다면 인덱스에서 1을 뺀값을~~
         return obj.id === this.id        
     },argObj);
 
-~~~
+
+
+
+
+
+
+    
+    
