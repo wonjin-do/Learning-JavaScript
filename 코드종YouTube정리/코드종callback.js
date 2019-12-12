@@ -26,6 +26,6 @@ setTimeout(() => {
 }, 1000);
 console.log(1);
 
-//setTimeout은 브라우저가 제공하는 webAPI
+//setTimeout은 브라우저가 제공하는 webAPI이다.
 
 
