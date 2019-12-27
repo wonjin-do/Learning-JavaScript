@@ -1,7 +1,8 @@
-p.308 너무 어렵다...p.
+p.308 너무 어렵다....
 
 //단일스레드에서 동작
 
+//14.2콜백
 //14.2.1
 const start = new Date();
 let i = 0;
@@ -17,7 +18,7 @@ const intervalid = setInterval(function(){
 
 //함수호출시 새로운 클로저 생성됨.
 
-//14.2.2
+//14.2.2스코프와 비동기적 실행
 //1. timer로 func이 전달됨.
 //2. main종료가 됨.
 //비동기이기 때문에 1과 2가 동시에 일어남
@@ -62,6 +63,7 @@ function countDown() {
 countDown();
 
 //Good
+//let을 for문의 조건문에 넣게 되면 블록({ })마다 새로운 변수가 생김
 function countDown() {
     console.log("Countdown:");
     for(let i=5;i>=0;i--){
@@ -73,13 +75,13 @@ function countDown() {
 countDown();
 
 
-//14.2.3오류 우선 콜백
+//14.2.3 오류 우선 콜백
 //뭔소린지 모르겠어... 설명이 이상해
 //(문제상황)콜백의 파라미터로 에러를 받는 방법이 왜 어려운지 알아보자
 const fs = require(`fs`);
 const fname = `may_or_may_not_exist.txt`;
 fs.readFile(fname, function (err, data) {
-    if(err)return console.error(`error reading file ${fname}: ${err.message}`);
+    if(err)return console.error(`error reading file ${fname}: ${err.message}`);//console.error문은 리턴값이 null임.
     console.log(`${fname} contents: ${data}`);
 });
 
@@ -88,10 +90,14 @@ fs.readFile(fname, function (err, data) {
 const fs = require(`fs`);
 fs.readFile(`a.txt`, function(err, dataA){
     if(err)console.error(err);
+    //a가 입력됐다는 전제하에
     fs.readFile(`b.txt`,function(err, dataB) {
         if(err)console.error(err);
+        //a, b가 입력됐다는 전제하에
         fs.readFile(`c.txt`, function(err, dataC){
             if(err)console.error(err);
+            //a, b, c가 모두 입력되면 그제서야
+            //60초를 기다렸다가 d.txt로 출력해라
             setTimeout(function () {
                 fs.writeFile('d.txt',dataA+dataB+dataC, function(err){
                     if(err)console.error(err);
@@ -102,15 +108,16 @@ fs.readFile(`a.txt`, function(err, dataA){
 });
 
 //bad
+//에러발생시키고 처리를 못함.
 const fs = require(`fs`);
 function readSketchyFile(){
     try{
         fs.readFile(`does_not_exist.txt`, function(err, data){
-            //콜백함수는 여러번 또는 0번 호출될 문제가 있다.
+            //콜백함수는 여러번 또는 0번 호출될 문제를 방지하는 안전장치가 없다.
             if(err)throw err;
         });
     }catch(err){
-        //catch구문으로 throw가 안돼서 err를 처리하지 못함.
+        //readFile메소드의 if문에서 발생한 err가 catch구문으로 throw가 안된다. 따라서 err를 처리하지 못함.
         console.log('warning: minor issue occurred, program continuing');
     }
 }
@@ -123,18 +130,18 @@ readSketchyFile();
 2. 콜백만 사용했을 때 나타나는 버그를 해결
 */
 
-//프로미스 사용전
+//프로미스 사용 전
 function countDown() {
     console.log("Countdown:");
     for(let i=5;i>=0;i--){
-        setTimeout(function () {
+        setTimeout(function () { //모든 setTimeout함수는 for문으로 main에 대해서 비동기로 진행됨
             console.log(i===0?"GO":i);
-        }, (5-i)*1000);//timer가 5초 4초 3초 2초 1초 간격으로 제대로 동작안하는거 같은데??
+        }, (5-i)*1000);
     }
 }
 countDown();
 
-
+//프로미스 사용 후
 function countDown(seconds){
     return new Promise(function(resolve, reject){
         for(let i=seconds; i>=0; i--){
