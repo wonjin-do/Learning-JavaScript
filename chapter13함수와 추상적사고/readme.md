@@ -6,7 +6,7 @@ function{ }
 # 13.2 리턴하는 서브루틴으로서 함수
 function{return }
 # 13.3 함수로서의 함수
-## 순수함수
+## ★순수함수★
 + 특징1. input이 같으면 output도 같다.
 + 특징2. 함수를 사용하는(호출하는) client단에서,순수함수는 client단에 있는 변수를 변경시키지(영향을 주지) 말아야함.
 
@@ -35,7 +35,7 @@ const getNextRainbowColor2 = (function(){
     };
 })();
 ~~~
-완벽한 개선 : 호출시 동일한 이터레이터를 반환함.
+★완벽한 개선 : 호출시 동일한 이터레이터를 반환함.
 ~~~javascript
 //p.277 상단 설명 대단쓰...
 function getRainbowIterator(){
@@ -59,7 +59,7 @@ typeof를 선행해서 사용하여 function임을 확인, 이후 instanceof 로
 
 # 13.5 함수표현식(IIFE, Immediately Invoked Function Expression)과 비동기적 코드
 * var : 함수스코프에 종속됨.
-* let : 블록 { } 스코프에 종속됨(훨신 더 자유로움)
+* ★let : 블록 { } 스코프에 종속됨(훨신 더 자유로움)
 ```javascript
 //var 키워드
 //Bad
@@ -90,7 +90,7 @@ let으로 해결가능
 # 13.6.2함수에 함수 전달
 + "콜백함수로서 함수"는 일부임. 
 + 비동기처리에서 콜백을 파라미터로 받는 함수가 모든 작업을 마친 후 실행되는 것이 콜백임.
-+ "파라미터로서 함수"가 일반적임. 
++ ★"파라미터로서 함수"가 일반적임. 
 ```javascript
 //fakeSetTimeout 정의
 function fakeSetTimeout(callback, sec){
@@ -105,6 +105,7 @@ setTimeout(() => {
 ```
 
 # 13.6.3함수를 반환하는 함수
+★reduce로 새로만든 함수를 리턴함
 ~~~javascript
 function sum(arr, f) {
     if(typeof f != `function`)f = x => x;
@@ -116,7 +117,7 @@ function newSummer(f) {
     return arr => sum(arr,f);//쩐다... arr을 파라미터로 하는 함수임.
 }
 
-const sumOfCubes = newSummer(x => Math.pow(x,3));
+const sumOfCubes = newSummer(x => Math.pow(x,3));//arr은 아직 안채워진, f만 채워진 함수임
 sumOfCubes([1, 2, 3]);//arr만 던져주면 됨.
 
 ~~~
