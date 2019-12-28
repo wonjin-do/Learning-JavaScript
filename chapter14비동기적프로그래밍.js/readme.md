@@ -118,7 +118,7 @@ fs.readFile(fname, function (err, data) {
 1. 계속 증가하는 depth
 2. 코드를 보기 불편함
 
-```
+```javascript
 const fs = require(`fs`);
 fs.readFile(`a.txt`, function(err, dataA){
     if(err)console.error(err);
