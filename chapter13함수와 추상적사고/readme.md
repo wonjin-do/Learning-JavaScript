@@ -105,7 +105,8 @@ setTimeout(() => {
 ```
 
 # 13.6.3함수를 반환하는 함수
-★reduce로 새로만든 함수를 리턴함
++ (불편했던 상황)[1, 2, 3] 각 요소를 더할 때, 제곱 또는 세제곱...네제곱을 한 후 더하는 조건을 준다면 sum이라는 함수가 모든 조건을 다 가지고 있기 불편함.
++ (해결)★reduce로 새로만든 함수를 리턴함
 ~~~javascript
 function sum(arr, f) {
     if(typeof f != `function`)f = x => x;
