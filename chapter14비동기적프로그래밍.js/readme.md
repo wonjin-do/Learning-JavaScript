@@ -3,6 +3,17 @@ Chapter 14 비동기적프로그래밍
 
 # 14.1 비유
 시간이 오래걸리는 일은 제껴두고 시간이 오래걸리지 않는 일을 빛의 속도록 진행한다.
+```javascript
+console.log(0);
+setTimeout(() => {
+    console.log(`hello`);
+}, 1000);
+
+setTimeout(() => {
+    console.log(`hello`);
+}, 1000);
+console.log(1);
+```
 
 # 14.2 콜백
 BadCase
