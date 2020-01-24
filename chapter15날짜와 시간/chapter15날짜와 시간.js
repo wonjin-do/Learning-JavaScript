@@ -22,11 +22,19 @@ npm install --save moment-timezone 이후 const moment = require(`moment-timezon
 LA~WashingTon 3시간 차이남.
 
 //15.5.1 서버에서 날짜 생성하기
-//new Date(Date.UTC())
-const num = Date.UTC(2016,4,27);//UTC 시간을 숫자형으로 표시
-console.log(num);
-console.log("UTC 표기: ", new Date(num));//UTC지역의 시간을 표시(지역에 상관없이 동일)
-console.log("지역표준시: ", new Date(2016,4,27));//지역에 따라 다른 지역표준시
+const x = new Date(Date.UTC(2016,4,27));
+const y = new Date(2016,4,27);
+console.log(x);
+console.log(y);
+//node
+2016-05-27T00:00:00.000Z
+2016-05-26T15:00:00.000Z
+
+//browser
+Fri May 27 2016 09:00:00 GMT+0900 (한국 표준시)
+Fri May 27 2016 00:00:00 GMT+0900 (한국 표준시)
+
+
 
 //moment.tz를 써서 타임존을 손으로 변형할 필요가 없다.
 //서버의 위치를 표기하면 UTC시간대를 편리하게 계산해준다.
@@ -60,6 +68,37 @@ Moment
 "YYYY-MM-DD"
 "YYYY-MM-DD HH:mm"
 "YYYY-MM-DD HH:mm Z"
+
+//15.8 날짜 구성요소
+이해안간다.. 왜 로스앤젤로스 기준인지...after.Date
+
+
+//15.9 날짜비교
+new Date() 가 숫자형이므로 가능한 일들
+const d1 = new Date(1996, 2, 1);
+const d2 = new Date(2009, 4, 27);
+d1 > d2 //false
+d2 - d1 //밀리sec term이 계산됨.
+
+moment.js도 연산가능함
+let m = moment();
+m.add(3, 'days');
+m.subtract(2, 'years');
+
+m = moment();
+m.startOf('year');
+m.endOf('month');
+
+//메소드 체인도 가능함.
+let m = moment()
+        .add(10,'hours');
+        .subtract(3,'days')
+        .endOf('month');
+
+//사용자친화적인 날짜
+moment().subtract(10, 'second').fromNow();//몇 초전
+moment().subtract(44, 'second').fromNow();//몇 초전
+moment().subtract(45, 'second').fromNow();//1분 전
 
 
 

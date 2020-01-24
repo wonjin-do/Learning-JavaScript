@@ -54,31 +54,25 @@ var Foo = (function () {
     b. Foo1 Prototype Object (prototype객체)가 생성됨.*/
     function Foo1(prop) {
       j++;//staic이라 인스턴스만들때마다 증가함.
-      
       let test = 0;//생성자함수 Foo1의 단순한 지역변수임.
-      //Foo1()나 new Foo1로 호출될 때 실행되고 블록{}벗어나면 소멸되는게 맞지만
+      //Foo1()나 new Foo1로 호출될 때 실행되고 블록{ }벗어나면 소멸되는게 맞지만
       //아래 코드처럼 인스턴스의 메소드에서 사용되면 클로저를 형성해서 계속 살아있음.
-      
-      
       //2. instance 필드
       this.prop = prop;
       this.printTest = function(){
           console.log(`test: ${test}`);
       }
-
       this.next = function(){
           test++;
       }
-
       this.add = function(){//주석처리 되어 메소드가 정의되지 않았다면 prototype의 sum을 찾아서 실행함.
         //this는 새로만들어진 인스턴스를 가르킴
         this.prop ++;
         return "instance의 add";
       }
-
     }//Foo1 함수정의끝. 
   
-    //2. 프로토타입 필드를 정의 ( 생성자함수 Foo1객체는 prototype객체에 접근할 수 있는 속성을 지님. )
+    //2. 프로토타입 필드를 정의 (생성자함수 Foo1객체는 prototype객체에 접근할 수 있는 속성을 지님. )
     //Instance에서 접근할 순 있으나, hasOwnProperty()에서는 false가 나옴.
     Foo1.prototype.x = 2; // 아래 Foo1.X = 1; static 변수와 구별할 것.
     Foo1.prototype.Jvalue = function(){
@@ -87,12 +81,15 @@ var Foo = (function () {
     Foo1.prototype.add = function () {
         /*
         this는 인스턴스가 될 수도 prototype객체가 될 수도 있다.
-        a. (올바른 사용)인스턴스를 가르키는 경우 : 인스턴스 메소드 add가 정의돼있지 않을 때, 인스턴스 obj에서 add를 호출하면 prototype의 add가 대신 호출되고 그 add내부의 this는 인스턴스 obj를 가르킴.
-        b. (비추) prototype Object를 가르키는 경우 : 클래스명.prototype.메소드() 방식으로 인스턴스없이 호출시, prototype의 add가 호출되고  add내부의 this는 prototype Object을 가르킴.
+        a. (올바른 사용)인스턴스를 가르키는 경우 : 인스턴스 메소드 add가 정의돼있지 않을 때,
+         인스턴스 obj에서 add를 호출하면 prototype의 add가 대신 호출되고 그 add내부의 this는
+         인스턴스 obj를 가르킴.
+        b. (비추) prototype Object를 가르키는 경우 : 클래스명.prototype.메소드() 방식으로
+         인스턴스없이 호출시, prototype의 add가 호출되고  add내부의 this는 prototype Object을
+         가르킴.
         */
         //console.log("this",this); 
         return "prototype의 add"; 
-      
     };
     Foo1.prototype.sub = function(){
         //console.log("this",this); 
@@ -102,7 +99,6 @@ var Foo = (function () {
         //console.log("this",this); 
         return "prototype의 mul";
     };
-    
     //1-2. 공개 Static필드정의 - 소속은 Foo1(생성자함수, 클래스)정의자체임, 객체에 소속되지 않음.
     Foo1.s = 1;
     Foo1.sum = function () {
@@ -125,8 +121,6 @@ var Foo = (function () {
     단, 인스턴스에서 직접사용 불가.
 
     */
-
-
     return Foo1;
   }());
 
@@ -167,7 +161,6 @@ f2.printTest();
 // Static변수
 // console.log("Foo의 static변수 Foo.s:\t", Foo.s);
 // console.log("Foo.add():\t",Foo.add());//static 메소드
-
 
 //ES6 클래스 도입
 class Vehicle{}

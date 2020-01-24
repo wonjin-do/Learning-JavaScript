@@ -4,6 +4,7 @@ p.308 너무 어렵다....
 
 //14.2콜백
 //14.2.1
+BadCase
 const start = new Date();
 let i = 0;
 const intervalid = setInterval(function(){
@@ -15,7 +16,6 @@ const intervalid = setInterval(function(){
 
 //Timer 브라우저가 제공하는 웹API이다.
 //자바스크립트 인터페이스 setTimeout, setInterval, clearInterval
-
 //함수호출시 새로운 클로저 생성됨.
 
 //14.2.2스코프와 비동기적 실행
@@ -125,7 +125,7 @@ readSketchyFile();
 
 //해결책
 /*
-프로미스
+14.3프로미스
 1. 콜백을 예측가능한 패턴으로 사용하게끔 만들어줌
 2. 콜백만 사용했을 때 나타나는 버그를 해결
 */
@@ -172,7 +172,7 @@ p.catch(function(err){
     console.log("countdown experienced an error: " + err.message);
 });
 
-//에러 유도
+//에러 유도 BUT, 에러가 발생해도 Promise안의 for문은 계속 돌아감.(문제상황)
 function countDown(seconds){
     return new Promise(function(resolve, reject){
         for(let i=seconds; i>=0; i--){
@@ -185,7 +185,7 @@ function countDown(seconds){
     });
 }
 
-//14.3.3이벤트
+//14.3.3이벤트(위 문제상황을 해결)
 const EventEmitter = require(`events`).EventEmitter;
 class Countdown extends EventEmitter{
     constructor(sec, superstitious){
@@ -207,8 +207,9 @@ class Countdown extends EventEmitter{
         });
     }
 }
-
+//미신이 없는 경우
 const c = new Countdown(15);
+//미신을 주는 경우
 //const c = new Countdown(15, true);
 c.on(`tick`, function(i){
     if(i>0)console.log(i + `...`);
@@ -284,7 +285,6 @@ c.go()
 //14.3.5 결정되지 않는 프라미스 방지하기
 function launch(){
     return new Promise(function(resolve, reject){
-        //에러추가
         if(Math.random() < 0.5)return;
         console.log("Lift off!");
         setTimeout(function(){
@@ -293,6 +293,7 @@ function launch(){
     });
 }
 
+//고난이도.....
 //결정되지 않은 프로미스를 실패하게 만드는 함수
 function addTimeout(fn, timeout){
     if(timeout === undefined)timeout = 1000;
@@ -325,6 +326,31 @@ c.go()
 
 
 //14.4제너레이터
+
+//12장 복습
+//12.2.2 제네레이터와 return
+// function* abc() {
+//     yield 'a';
+//     yield 'b';
+//     yield 'c';
+// }
+
+function* abc() {
+    yield 'a';
+    yield 'b';
+    return 'c';
+}
+const it = abc();
+console.log(it.next()); // {value:'a', done: false}
+console.log(it.next()); // {value:'b', done: false}
+console.log(it.next()); // {value:'c', done: true}
+
+// a와 b 출력 c는 출력X
+for(let l of abc()) {
+    console.log(l);
+}
+//복습 끝
+
 const fs = require(`fs`);
 fs.readFile(`a.txt`, function(err, dataA){
     if(err)console.error(err);
